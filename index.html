@@ -1,0 +1,54 @@
+ <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset='utf-8' />
+        <title>Points on a map</title>
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+        <style>
+          body {
+            margin: 0;
+            padding: 0;
+          }
+    
+          #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+          }
+        </style>
+      </head>
+      <body>
+        <div id='map'></div>
+        <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZWNvYW5kcmV3dHJjIiwiYSI6InZ0MzhibUkifQ.Q0qYLMThqHqmAJ3q3dxvog'; // replace this with your access token
+        var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/ecoandrewtrc/cjimnimmg0f5y2sukm3kz7wom', // replace this with your style URL
+          center: [-122.447916, 37.760038],
+          zoom: 10
+        });
+
+//copy pasted
+ map.on('click', function(e) {
+      var features = map.queryRenderedFeatures(e.point, {
+        layers: ['sf-parks'] // replace this with the name of the layer
+      });
+    
+      if (!features.length) {
+        return;
+      }
+    
+      var feature = features[0];
+    
+      var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map);
+    });
+        </script>
+      </body>
+    </html>
