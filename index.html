@@ -26,15 +26,14 @@
         mapboxgl.accessToken = 'pk.eyJ1IjoiZWNvYW5kcmV3dHJjIiwiYSI6InZ0MzhibUkifQ.Q0qYLMThqHqmAJ3q3dxvog'; // replace this with your access token
         var map = new mapboxgl.Map({
           container: 'map',
-          style: 'mapbox://styles/ecoandrewtrc/cjimnimmg0f5y2sukm3kz7wom', // replace this with your style URL
-          center: [-122.447916, 37.760038],
-          zoom: 10
+          style: 'mapbox://styles/ecoandrewtrc/cjdoz9q3t033m2sod0oh6f7zf', // replace this with your style URL
+          center: [-121.9025185, 36.6108969],
+          zoom: 13
         });
-
 //copy pasted
  map.on('click', function(e) {
       var features = map.queryRenderedFeatures(e.point, {
-        layers: ['sf-parks'] // replace this with the name of the layer
+        layers: ['scuba sites'] // replace this with the name of the layer
       });
     
       if (!features.length) {
