@@ -11,6 +11,7 @@
         margin: 0;
         padding: 0;
       }
+      
       #map {
         position: absolute;
         top: 0;
@@ -33,9 +34,9 @@
     <div id='map'></div>
     <div id='menu'>
       <input id='cjlzrtjgz3v4x2sn1c0eowqzn' type='radio' name='rtoggle' value='Basemap'>
-      <label for='basemap'>basemap</label>
+      <label for='Basemap'>Dive Sites</label>
       <input id='cjmzfqo7n3q9k2rold991v95b' type='radio' name='rtoggle' value='Satellite'>
-      <label for='satellite'>satellite</label>
+      <label for='Satellite'>Satellite</label>
     </div>
 
     <script>
@@ -46,8 +47,8 @@
     //[34.28, -122.18], // Southwest coordinates
     //[40.89, -115.29]  // Northeast coordinates
     //];
+      
     // Initialize map
-     
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/opendivesites/cjlzrtjgz3v4x2sn1c0eowqzn?fresh=true',
@@ -56,13 +57,17 @@
       zoom: 10,
       //maxBounds: bounds // Sets bounds as max
     });
+      
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
+      
   function mapReset() {
     
   }
+      
   map.on('click', function(e) {
     mapReset();
+    
     // Add pop-up
     var features = map.queryRenderedFeatures(e.point, {
         layers: ['opendivesitespois'] // replace this with the name of the layer
@@ -78,22 +83,27 @@
         .addTo(map);
       });
    
+      
 // Toggle styles
     var layerList = document.getElementById('menu');
     var inputs = layerList.getElementsByTagName('input');
+      
     function switchLayer(layer) {
       var layerId = layer.target.id;
       map.setStyle('mapbox://styles/ecoandrewtrc/' + layerId);
     }
+      
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].onclick = switchLayer;
       }
+      
         // Change the cursor to a pointer when the mouse is over the pitches layer.
-    map.on('mouseenter', 'opendivesitespoi', function () {
+    map.on('mouseenter', 'opendivesitespois', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
+      
     // Change it back to a pointer when it leaves.
-    map.on('mouseleave', 'opendivesitespoi', function () {
+    map.on('mouseleave', 'opendivesitespois', function () {
         map.getCanvas().style.cursor = '';
     });
     // Add popups
