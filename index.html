@@ -84,6 +84,18 @@
         .setLngLat(feature.geometry.coordinates)
         .addTo(map);
       });
+      
+      // Toggle styles
+    var layerList = document.getElementById('menu');
+    var inputs = layerList.getElementsByTagName('input');
+    function switchLayer(layer) {
+      var layerId = layer.target.id;
+      map.setStyle('mapbox://styles/ecoandrewtrc/' + layerId);
+    }
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = switchLayer;
+      }
+
     
  // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.
