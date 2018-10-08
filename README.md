@@ -1,3 +1,3 @@
 # ecoandrewtrc.github.io
-Bathyscope
+Open Dive Sites
 https://ecoandrewtrc.github.io/
