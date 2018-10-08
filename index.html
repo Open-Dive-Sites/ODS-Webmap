@@ -106,21 +106,23 @@
     map.on('mouseleave', 'entries', function () {
         map.getCanvas().style.cursor = '';
     });
+      
     // Add popups
     map.on('click', function(e) {
       var pitches = map.queryRenderedFeatures(e.point, { layers: ['entries'] // name of the layer
-      //});
+      })
         //if (!pitches.length) {
           //return;
-        }
+        //}
+      
       //var pitch = pitches[0];
-      var popup = new mapboxgl.Popup({ offset: [0, -15] })
+     // var popup = new mapboxgl.Popup({ offset: [0, -15] })
       //.setLngLat(pitch.geometry.coordinates)
       //.setHTML('<h3>' + pitch.properties.TYPE + '</h3>')
       //.setLngLat(pitch.geometry.coordinates)
-      .addTo(map);
-    });
-  });
+      //.addTo(map);
+   // });
+  })
     </script>
 </body>
 </html>
