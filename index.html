@@ -42,30 +42,27 @@
     <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoib3BlbmRpdmVzaXRlcyIsImEiOiJjamxxc296a2EyanAyM3dvNTZ3dWppbmg2In0.IYOgz_WuabVE0MEQsO_ZAg'; // replace this with your access token
     
-    // Set bounds to CA Coast
-    //var bounds = [
-    //[34.28, -122.18], // Southwest coordinates
-    //[40.89, -115.29]  // Northeast coordinates
-    //];
       
     // Initialize map
     var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/opendivesites/cjlzrtjgz3v4x2sn1c0eowqzn?fresh=true',
-      
       center: [-121.93,36.58],
       zoom: 10,
       //maxBounds: bounds // Sets bounds as max
     });
       
-      
+            // Set bounds to CA Coast
+    //var bounds = [
+    //[34.28, -122.18], // Southwest coordinates
+    //[40.89, -115.29]  // Northeast coordinates
+    //];
       
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
   
   function mapReset() {
   }
-      
       
   map.on('click', function(e) {
     mapReset();
@@ -84,6 +81,7 @@
         .setLngLat(feature.geometry.coordinates)
         .addTo(map);
       });
+      
       
       // Toggle styles
     var layerList = document.getElementById('menu');
