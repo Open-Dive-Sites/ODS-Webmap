@@ -58,6 +58,8 @@
       //maxBounds: bounds // Sets bounds as max
     });
       
+      
+      
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
   
@@ -78,14 +80,14 @@
       var feature = features[0];
       var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
-        .setHTML('<h3>' + feature.properties.Description + '</h3>')
+        .setHTML('<h3>' + feature.properties.URL + '</h3>')
         .setLngLat(feature.geometry.coordinates)
         .addTo(map);
       });
     
  // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.
-    map.on('click', 'places', function (e) {
+    map.on('click', 'entries', function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
         var description = e.features[0].properties.description;
 
