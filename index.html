@@ -33,15 +33,20 @@
   
     <div id='map'></div>
     <div id='menu'>
-      <input id='cjlzrtjgz3v4x2sn1c0eowqzn' type='radio' name='rtoggle' value='Basemap'>
-      <label for='Basemap'>Dive Sites</label>
-      <input id='cjmzfqo7n3q9k2rold991v95b' type='radio' name='rtoggle' value='Satellite'>
-      <label for='Satellite'>Satellite</label>
+      <input id='cjlzrtjgz3v4x2sn1c0eowqzn' type='radio' name='rtoggle' value='opendivesites'>
+      <label for='opendivesites'>Dive Sites</label>
+      <input id='cjmzfqo7n3q9k2rold991v95b' type='radio' name='rtoggle' value='satellite'>
+      <label for='satellite'>Satellite</label>
     </div>
 
     <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoib3BlbmRpdmVzaXRlcyIsImEiOiJjamxxc296a2EyanAyM3dvNTZ3dWppbmg2In0.IYOgz_WuabVE0MEQsO_ZAg'; // replace this with your access token
     
+        // Set bounds to CA Coast
+    //var bounds = [
+    //[34.28, -122.18], // Southwest coordinates
+    //[40.89, -115.29]  // Northeast coordinates
+    //];
       
     // Initialize map
     var map = new mapboxgl.Map({
@@ -52,11 +57,7 @@
       //maxBounds: bounds // Sets bounds as max
     });
       
-            // Set bounds to CA Coast
-    //var bounds = [
-    //[34.28, -122.18], // Southwest coordinates
-    //[40.89, -115.29]  // Northeast coordinates
-    //];
+          
       
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
@@ -88,7 +89,7 @@
     var inputs = layerList.getElementsByTagName('input');
     function switchLayer(layer) {
       var layerId = layer.target.id;
-      map.setStyle('mapbox://styles/ecoandrewtrc/' + layerId);
+      map.setStyle('mapbox://styles/opendivesites/' + layerId);
     }
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].onclick = switchLayer;
