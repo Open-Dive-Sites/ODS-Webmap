@@ -1,3 +1,3 @@
-# ecoandrewtrc.github.io
+# open-dive-sites.github.io
 Open Dive Sites
-https://ecoandrewtrc.github.io/
+https://Open-Dive-Sites.github.io/
