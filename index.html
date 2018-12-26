@@ -23,14 +23,51 @@
 
   <body>
       <style>
-        #menu {
+       #menu {
           position: absolute;
           background: #fff;
           padding: 10px;
           font-family: 'Open Sans', sans-serif;
         }
+        .mapboxgl-popup-close-button {
+              display: none;
+            }
+        .mapboxgl-popup-content {
+              font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+              padding: 0;
+              width: 180px;
+            }
+        .mapboxgl-popup-content-wrapper {
+            padding: 1%;
+        }
+        .mapboxgl-popup-content h3 {
+              background: #91c949;
+              color: #fff;
+              margin: 0;
+              display: block;
+              padding: 5px;
+              border-radius: 3px 3px 0 0;
+              font-weight: 700;
+              margin-top: -15px;
+            }
+        .mapboxgl-popup-content h4 {
+              margin: 0;
+              display: block;
+              padding: 10px;
+              font-weight: 400;
+            }
+        .mapboxgl-popup-content div {
+              padding: 10px;
+            }
+        .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+          margin-top: 15px;
+        }
+        .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+          border-bottom-color: #91c949;
+        }
       </style>
-  
+    
+    
     <div id='map'></div>
     <div id='menu'>
       <input id='cjlzrtjgz3v4x2sn1c0eowqzn' type='radio' name='rtoggle' value='opendivesites'>
@@ -57,8 +94,6 @@
       //maxBounds: bounds // Sets bounds as max
     });
       
-          
-      
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
   
@@ -68,6 +103,7 @@
   map.on('click', function(e) {
     mapReset();
     
+    
     // Add pop-up
     var features = map.queryRenderedFeatures(e.point, {
         layers: ['entries'] // replace this with the name of the layer
@@ -76,17 +112,20 @@
         return;
       }
       var feature = features[0];
+          
       var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
-        .setHTML('<h3>' + entries.url + '</h3>')
+        .setHTML(`<h3><a href="${feature.properties.URL}">${feature.properties.Name}</a></h3>`)
         .setLngLat(feature.geometry.coordinates)
         .addTo(map);
       });
-      
+     
       
       // Toggle styles
     var layerList = document.getElementById('menu');
     var inputs = layerList.getElementsByTagName('input');
+      
+      
     function switchLayer(layer) {
       var layerId = layer.target.id;
       map.setStyle('mapbox://styles/opendivesites/' + layerId);
@@ -94,37 +133,33 @@
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].onclick = switchLayer;
       }
-
     
  // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.
-    map.on('click', 'entries', function (e) {
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.url;
-
+    map.on('mouseenter', 'entries', function (e) {
+       map.getCanvas().style.cursor = 'pointer';
+    });
+      
+      // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'entries', function () {
+        map.getCanvas().style.cursor = '';
+    });
+     
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
         // over the copy being pointed to.
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
-
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(map);
-    });
-
     // Change the cursor to a pointer when the mouse is over the places layer.
     map.on('mouseenter', 'entries', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
-
     // Change it back to a pointer when it leaves.
     map.on('mouseleave', 'entries', function () {
         map.getCanvas().style.cursor = '';
     });
-//});
+ 
 </script>
 </body>
 </html>
