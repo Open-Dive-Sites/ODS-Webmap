@@ -67,7 +67,6 @@
         }
       </style>
     
-    
     <div id='map'></div>
     <div id='menu'>
       <input id='cjlzrtjgz3v4x2sn1c0eowqzn' type='radio' name='rtoggle' value='opendivesites'>
@@ -105,7 +104,6 @@
   map.on('click', function(e) {
     mapReset();
     
-    
     // Add pop-up
     var features = map.queryRenderedFeatures(e.point, {
         layers: ['entries'] // replace this with the name of the layer
@@ -122,11 +120,9 @@
         .addTo(map);
       });
      
-      
       // Toggle styles
     var layerList = document.getElementById('menu');
     var inputs = layerList.getElementsByTagName('input');
-      
       
     function switchLayer(layer) {
       var layerId = layer.target.id;
