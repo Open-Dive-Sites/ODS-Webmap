@@ -1,3 +1,3 @@
 # open-dive-sites.github.io
 Open Dive Sites
-https://Open-Dive-Sites.github.io/
+https://open-dive-sites.github.io/ODS-Webmap/
