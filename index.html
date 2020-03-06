@@ -104,9 +104,25 @@
   map.on('click', function(e) {
     mapReset();
     
-    // Add pop-up
+    // Add pop-up Entry
     var features = map.queryRenderedFeatures(e.point, {
         layers: ['Entries'] // replace this with the name of the layer
+      });
+      if (!features.length) {
+        return;
+      }
+      var feature = features[0];
+          
+      var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(`<h3><a target="_blank" href="${feature.properties.URL}">${feature.properties.Name}</a></h3>`)
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map);
+      });
+      
+      // Add pop-up POI
+    var features = map.queryRenderedFeatures(e.point, {
+        layers: ['Points of Interest'] // replace this with the name of the layer
       });
       if (!features.length) {
         return;
